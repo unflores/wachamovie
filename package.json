@@ -4,9 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc -d --project ./tsconfig.json",
+    "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "@types/koa-mount": "^3.0.1",
+    "@types/koa-router": "^7.0.39",
+    "@types/koa-send": "^4.1.1",
+    "@types/koa-static": "^4.0.0",
+    "@types/node": "^10.12.18",
+    "nodemon": "^1.18.9"
+  },
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
+    "koa-static": "^5.0.0"
+  }
 }
