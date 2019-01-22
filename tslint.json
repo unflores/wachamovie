@@ -1,0 +1,11 @@
+// tslint.json
+{
+  "extends": ["tslint:recommended", "tslint-config-airbnb"],
+  "rules": {
+    "semicolon": [true, "never"],
+    "quotemark": [false],
+    "object-literal-sort-keys": false,
+    "import-name": false,
+    "prefer-array-literal": [true, { "allow-type-parameters": true }]
+  }
+}
