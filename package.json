@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -r ts-node/register src/**/*.spec.ts",
     "build": "npx tsc -d --project ./tsconfig.json",
     "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan"
   },
@@ -14,14 +14,22 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.25",
     "@types/bunyan": "^1.8.5",
+    "@types/chai": "^4.1.7",
     "@types/koa": "^2.0.48",
     "@types/koa-mount": "^3.0.1",
     "@types/koa-router": "^7.0.39",
     "@types/koa-send": "^4.1.1",
     "@types/koa-static": "^4.0.0",
+    "@types/mocha": "^5.2.5",
     "@types/mongoose": "^5.3.9",
     "@types/node": "^10.12.18",
-    "nodemon": "^1.18.9"
+    "@types/superagent": "^3.8.6",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "supertest": "^3.4.2",
+    "ts-node": "^8.0.1",
+    "typescript": "^3.2.4"
   },
   "dependencies": {
     "bluebird": "^3.5.3",
