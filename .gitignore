@@ -12,3 +12,4 @@ node_modules
 yarn-error.log
 
 .env
+src/testMovies/*
