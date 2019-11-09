@@ -1,8 +1,8 @@
-const Router = require('koa-router')
-const send = require('koa-send')
-const serve = require('koa-static')
-const mount = require('koa-mount')
-const path = require('path')
+import Router = require('koa-router')
+import send = require('koa-send')
+import serve = require('koa-static')
+import mount = require('koa-mount')
+import path = require('path')
 
 /**
  * Configure the server app with default configuration
