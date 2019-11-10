@@ -4,27 +4,28 @@ import logger from './logger'
 const env = process.env.NODE_ENV
 
 interface IConfig {
-  url?: string
+  uri?: string
 }
 
 const config: IConfig = {}
 
 switch (env) {
   case 'development':
-    config.url = process.env.DEV_DB_URI
+    config.uri = process.env.DEV_DB_URI
+    mongoose.set('debug', true)
     break
   case 'production':
-    config.url = process.env.PROD_DB_URI
+    config.uri = process.env.PROD_DB_URI
     break
   default:
     logger.fatal('Missing env!')
     process.exit()
 }
-mongoose.set('debug', true)
+
 mongoose.Promise = bluebird
 
 mongoose.connection.on('connected', () => {
-  logger.info(`Mongoose default connection open to ${config.url}`)
+  logger.info(`Mongoose default connection open to ${config.uri}`)
 })
 
 // If the connection throws an error
@@ -39,7 +40,7 @@ mongoose.connection.on('disconnected', () => {
 
 export default (cb?: () => void) => {
   mongoose.connect(
-    config.url,
+    config.uri,
     cb,
   )
   return mongoose
