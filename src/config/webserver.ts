@@ -22,7 +22,6 @@ const buildRoutes = (app) => {
  * @returns {Object} Configured web application
  */
 export function configure(app) {
-
   app = buildRoutes(app)
 
   connectDatabase()

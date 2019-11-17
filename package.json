@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register src/**/*.spec.ts",
+    "test": "mocha src/**/*.spec.ts -r ts-node/register -A",
     "build": "npx tsc -d --project ./tsconfig.json",
     "dev": "NODE_ENV=development npx nodemon ./dist/index.js | bunyan",
     "console": "NODE_OPTIONS=--experimental-repl-await NODE_ENV=development node dist/src/scripts/repl.js"
