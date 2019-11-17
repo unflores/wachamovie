@@ -9,7 +9,6 @@ import { readdirSync } from 'fs'
 
 const findNewMovies = async () => {
   const movieNames = readdirSync(config.moviesLocation)
-
   const storedMovies = await Movie.find({ file: { $in: movieNames } }).exec()
   const storedMovieNames = storedMovies.map(movie => movie.name)
 
@@ -21,15 +20,16 @@ const findNewMovies = async () => {
 export default async () => {
   const movies = await findNewMovies()
 
-  return movies.map(async (movie) => {
-    try {
-      await Movie.create({
-        file: movie,
-        name: movie
-      })
-      return movie
-    } catch (error) {
-      console.log(error)
-    }
-  })
+  return Promise.all(
+    movies.map(async (movie) => {
+      try {
+        return await Movie.create({
+          file: movie,
+          name: movie
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    })
+  )
 }
