@@ -1,8 +1,31 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import Main from './templates/Main'
+import api from './api'
 
-class App extends React.Component<any, any> {
+interface Movie {
+  name: string
+}
+
+interface State {
+  movies: Movie[]
+}
+
+
+class App extends React.Component<any, State> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      movies: undefined
+    }
+  }
+
+  async componentDidMount() {
+    const results = await api.get('/api/movies/')
+    console.log(results.data)
+    this.setState({ movies: results.data as Movie[] })
+  }
+
   public render() {
     return (
       <Main>
