@@ -1,4 +1,4 @@
-import Movie from '../movie'
+import Movie from '../../movies/movie'
 import config from '../../../config/config'
 import { readdirSync } from 'fs'
 
@@ -17,6 +17,10 @@ const findNewMovies = async () => {
   )
 }
 
+/**
+ * Adds new movies from the config.moviesLocation dir.
+ *
+ */
 export default async () => {
   const movies = await findNewMovies()
 
