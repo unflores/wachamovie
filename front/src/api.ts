@@ -4,7 +4,9 @@ const baseHeaders = {
 };
 
 
-const buildResults = async (responseData: Response) => {
+
+async function buildResults<T>(responseData: Response):
+  Promise<{ code: number, data: T }> {
   try {
     return {
       code: responseData.status,
@@ -13,7 +15,7 @@ const buildResults = async (responseData: Response) => {
   } catch (error) {
     console.warn(error);
   }
-};
+}
 
 /**
  * Simple wrapper over http fetch function
@@ -26,31 +28,31 @@ const buildResults = async (responseData: Response) => {
  *
  */
 export default {
-  delete: async (path: string, _body = {}, headers = {}) => {
+  delete: async <T>(path: string, _body = {}, headers = {}) => {
     let response;
     try {
       response = await fetch(path, {
         method: 'DELETE',
         headers: { ...baseHeaders, ...headers },
       });
-      return await buildResults(response);
+      return await buildResults<T>(response);
     } catch (error) {
       console.warn(error);
     }
   },
-  get: async (path: string, _body = {}, headers = {}) => {
+  get: async <T>(path: string, _body = {}, headers = {}) => {
     let response;
     try {
       response = await fetch(path, {
         method: 'GET',
         headers: { ...baseHeaders, ...headers }
       });
-      return await buildResults(response);
+      return await buildResults<T>(response);
     } catch (error) {
       console.warn(error);
     }
   },
-  put: async (path: string, body = {}, headers = {}) => {
+  put: async <T>(path: string, body = {}, headers = {}) => {
     let response;
     try {
       response = await fetch(path, {
@@ -60,12 +62,12 @@ export default {
         }),
         headers: { ...baseHeaders, ...headers }
       });
-      return await buildResults(response);
+      return await buildResults<T>(response);
     } catch (error) {
       console.warn(error);
     }
   },
-  post: async (path: string, body = {}, headers = {}) => {
+  post: async <T>(path: string, body = {}, headers = {}) => {
     let response;
     try {
       response = await fetch(path, {
@@ -75,7 +77,7 @@ export default {
         }),
         headers: { ...baseHeaders, ...headers }
       });
-      return await buildResults(response);
+      return await buildResults<T>(response);
     } catch (error) {
       console.warn(error);
     }
