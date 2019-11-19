@@ -4,12 +4,14 @@ import serve = require('koa-static')
 import mount = require('koa-mount')
 import path = require('path')
 import connectDatabase from '../config/database'
+import apiRouter from '../modules/apiRouter'
 
 const buildRoutes = (app) => {
   const router = new Router()
 
   app.use(mount('/assets', serve(path.resolve('front/assets'))))
   router.get('/', async (ctx) => await send(ctx, 'front/assets/index.html'))
+  router.use(apiRouter.routes())
   app.use(router.routes())
   return app
 }
