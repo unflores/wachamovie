@@ -5,6 +5,7 @@ import api from './api'
 
 interface Movie {
   name: string
+  _id: string
 }
 
 interface State {
@@ -16,17 +17,27 @@ class App extends React.Component<any, State> {
   constructor(props: any) {
     super(props)
     this.state = {
-      movies: undefined
+      movies: []
     }
   }
 
+  fetchMovies = async () => {
+    return await api.get<Movie[]>('/api/movies/')
+  }
+
+  importMovies = async () => {
+    return await api.get<Movie[]>('/api/movie_importations/')
+    const results = await this.fetchMovies()
+    this.setState({ movies: results.data })
+  }
+
   async componentDidMount() {
-    const results = await api.get('/api/movies/')
-    console.log(results.data)
-    this.setState({ movies: results.data as Movie[] })
+    const results = await this.fetchMovies()
+    this.setState({ movies: results.data })
   }
 
   public render() {
+
     return (
       <Main>
         <div className="row" />
@@ -39,19 +50,20 @@ class App extends React.Component<any, State> {
                   <th scope="col">Name</th>
                   <th scope="col" />
                   <th scope="col">Options</th>
+                  <th scope="col">
+                    <button onClick={this.importMovies}>Import movies</button>
+                  </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>name of some movie</td>
-                  <td />
-                  <td />
-                </tr>
-                <tr>
-                  <td>name of some movie</td>
-                  <td />
-                  <td />
-                </tr>
+                {this.state.movies.map((movie) =>
+                  <tr key={movie._id}>
+                    <td>{movie.name}</td>
+                    <td />
+                    <td />
+                    <td />
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
