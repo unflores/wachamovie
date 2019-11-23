@@ -9,6 +9,7 @@ import apiRouter from '../modules/apiRouter'
 const buildRoutes = (app) => {
   const router = new Router()
 
+  app.use(mount('/files', serve(path.resolve('src/data/testMovies'))))
   app.use(mount('/assets', serve(path.resolve('front/assets'))))
   router.get('/', async (ctx) => await send(ctx, 'front/assets/index.html'))
   router.use(apiRouter.routes())
