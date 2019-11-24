@@ -75,7 +75,9 @@ class App extends React.Component<any, State> {
               <tbody>
                 {this.state.movies.map((movie) =>
                   <tr key={movie._id}>
-                    <td onClick={() => this.openMovie(movie.name)}>{movie.name}</td>
+                    <td >
+                      <a href="#" onClick={() => this.openMovie(movie.name)}>{movie.name}</a>
+                    </td>
                     <td />
                     <td />
                     <td />

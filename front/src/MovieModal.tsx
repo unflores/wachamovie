@@ -14,7 +14,11 @@ export default ({ handleClose, show, file }: Props) => {
     <div className={`${styles.modal} ${display}`}>
       <section className={styles['modal-main']}>
         <iframe className={styles['viewer']} src={file} width="320" height="240" />
-        <button onClick={handleClose}>close</button>
+        <div className="row">
+          <div className="col-12">
+            <button className="btn btn-dark" onClick={handleClose}>close</button>
+          </div>
+        </div>
       </section>
     </div >
   );
