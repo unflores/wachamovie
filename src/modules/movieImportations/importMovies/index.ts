@@ -1,5 +1,4 @@
 import Movie from '../../movies/movie'
-import config from '../../../config/config'
 import { readdirSync } from 'fs'
 
 // read file names from loaded config.moviesLocation
@@ -8,7 +7,7 @@ import { readdirSync } from 'fs'
 // load new movies to db
 
 const findNewMovies = async () => {
-  const movieNames = readdirSync(config.moviesLocation)
+  const movieNames = readdirSync(process.env.MOVIE_DIR)
   const storedMovies = await Movie.find({ file: { $in: movieNames } }).exec()
   const storedMovieNames = storedMovies.map(movie => movie.name)
 
