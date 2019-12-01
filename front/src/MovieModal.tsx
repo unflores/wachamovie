@@ -13,7 +13,10 @@ export default ({ handleClose, show, file }: Props) => {
   return (
     <div className={`${styles.modal} ${display}`}>
       <section className={styles['modal-main']}>
-        <iframe className={styles['viewer']} src={file} width="320" height="240" />
+        <video width="320" height="240" controls>
+          <source src={file} type="video/x-matroska" />
+          Your browser does not support the video tag.
+        </video>
         <div className="row">
           <div className="col-12">
             <button className="btn btn-dark" onClick={handleClose}>close</button>

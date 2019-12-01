@@ -13,4 +13,9 @@ Wachamovie is a webapp that will scan some directory for movie files, store them
 
   cd front && yarn run build
   cd ../ && yarn run build && yarn run dev
+
 ```
+## TODO
+
+* Implement streaming of files
+* Test scraping all subdirectories of video paths
