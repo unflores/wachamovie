@@ -1,5 +1,6 @@
 import Movie from '../../movies/movie'
 import { readdirSync } from 'fs'
+import filenameToAttributes from './filenameToAttributes'
 
 // read file names from loaded config.moviesLocation
 // find all filenames in mongoose where listed in read filenames
@@ -25,10 +26,12 @@ export default async () => {
 
   return Promise.all(
     movies.map(async (movie) => {
+      const atts = filenameToAttributes(movie)
       try {
         return await Movie.create({
           file: movie,
-          name: movie
+          name: movie,
+          ...atts
         })
       } catch (error) {
         console.log(error)

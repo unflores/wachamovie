@@ -16,6 +16,14 @@ const movieSchema = new mongoose.Schema({
   file: {
     type: String,
     required: true
+  },
+  year: {
+    type: Number,
+    required: false
+  },
+  resolution: {
+    type: String,
+    required: false
   }
 })
 
