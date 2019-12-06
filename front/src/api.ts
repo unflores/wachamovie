@@ -1,19 +1,17 @@
 const baseHeaders = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json'
-};
-
-
+  "Accept": 'application/json',
+  'Content-Type': 'application/json',
+}
 
 async function buildResults<T>(responseData: Response):
   Promise<{ code: number, data: T }> {
   try {
     return {
       code: responseData.status,
-      data: await responseData.json()
-    };
+      data: await responseData.json(),
+    }
   } catch (error) {
-    console.warn(error);
+    console.warn(error)
   }
 }
 
@@ -29,57 +27,57 @@ async function buildResults<T>(responseData: Response):
  */
 export default {
   delete: async <T>(path: string, _body = {}, headers = {}) => {
-    let response;
+    let response
     try {
       response = await fetch(path, {
         method: 'DELETE',
         headers: { ...baseHeaders, ...headers },
-      });
-      return await buildResults<T>(response);
+      })
+      return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error);
+      console.warn(error)
     }
   },
   get: async <T>(path: string, _body = {}, headers = {}) => {
-    let response;
+    let response
     try {
       response = await fetch(path, {
         method: 'GET',
-        headers: { ...baseHeaders, ...headers }
-      });
-      return await buildResults<T>(response);
+        headers: { ...baseHeaders, ...headers },
+      })
+      return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error);
+      console.warn(error)
     }
   },
   put: async <T>(path: string, body = {}, headers = {}) => {
-    let response;
+    let response
     try {
       response = await fetch(path, {
         method: 'PATCH',
         body: JSON.stringify({
-          ...body
+          ...body,
         }),
-        headers: { ...baseHeaders, ...headers }
-      });
-      return await buildResults<T>(response);
+        headers: { ...baseHeaders, ...headers },
+      })
+      return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error);
+      console.warn(error)
     }
   },
   post: async <T>(path: string, body = {}, headers = {}) => {
-    let response;
+    let response
     try {
       response = await fetch(path, {
         method: 'POST',
         body: JSON.stringify({
-          ...body
+          ...body,
         }),
-        headers: { ...baseHeaders, ...headers }
-      });
-      return await buildResults<T>(response);
+        headers: { ...baseHeaders, ...headers },
+      })
+      return await buildResults<T>(response)
     } catch (error) {
-      console.warn(error);
+      console.warn(error)
     }
-  }
-};
+  },
+}

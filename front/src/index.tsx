@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import Main from './templates/Main'
 import api from './api'
 import MovieModal from './MovieModal'
+import Main from './templates/Main'
 
 interface Movie {
   name: string
@@ -21,30 +21,30 @@ class App extends React.Component<any, State> {
     this.state = {
       movies: [],
       isModalVisible: false,
-      shownFile: undefined
+      shownFile: undefined,
     }
   }
 
-  fetchMovies = async () => {
+  public fetchMovies = async () => {
     return await api.get<Movie[]>('/api/movies/')
   }
 
-  importMovies = async () => {
+  public importMovies = async () => {
     return await api.get<Movie[]>('/api/movie_importations/')
     const results = await this.fetchMovies()
     this.setState({ movies: results.data })
   }
 
-  hideModal = () => {
-    this.setState({ isModalVisible: false });
+  public hideModal = () => {
+    this.setState({ isModalVisible: false })
   }
 
-  openMovie = (name: string) => {
+  public openMovie = (name: string) => {
     console.log('hai')
     this.setState({ isModalVisible: true, shownFile: `/files/${name}` })
   }
 
-  async componentDidMount() {
+  public async componentDidMount() {
     const results = await this.fetchMovies()
     this.setState({ movies: results.data })
   }
@@ -81,7 +81,7 @@ class App extends React.Component<any, State> {
                     <td />
                     <td />
                     <td />
-                  </tr>
+                  </tr>,
                 )}
               </tbody>
             </table>

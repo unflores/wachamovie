@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default ({ handleClose, show, file }: Props) => {
-  const display = show ? styles['display-block'] : styles['display-none'];
+  const display = show ? styles['display-block'] : styles['display-none']
 
   return (
     <div className={`${styles.modal} ${display}`}>
@@ -24,5 +24,5 @@ export default ({ handleClose, show, file }: Props) => {
         </div>
       </section>
     </div >
-  );
-};
+  )
+}
