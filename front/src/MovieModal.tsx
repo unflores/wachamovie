@@ -13,7 +13,7 @@ export default ({ handleClose, show, file }: Props) => {
   return (
     <div className={`${styles.modal} ${display}`}>
       <section className={styles['modal-main']}>
-        <video width="320" height="240" controls>
+        <video width="320" height="240" controls={true}>
           <source src={file} type="video/x-matroska" />
           Your browser does not support the video tag.
         </video>

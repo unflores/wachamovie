@@ -26,7 +26,7 @@ async function buildResults<T>(responseData: Response):
  *
  */
 export default {
-  delete: async <T>(path: string, _body = {}, headers = {}) => {
+  delete: async <T>(path: string, body = {}, headers = {}) => {
     let response
     try {
       response = await fetch(path, {
@@ -38,7 +38,7 @@ export default {
       console.warn(error)
     }
   },
-  get: async <T>(path: string, _body = {}, headers = {}) => {
+  get: async <T>(path: string, body = {}, headers = {}) => {
     let response
     try {
       response = await fetch(path, {
