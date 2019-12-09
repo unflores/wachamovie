@@ -1,6 +1,7 @@
 import Movie from '../../movies/movie'
-import { readdirSync } from 'fs'
+import * as globby from 'globby'
 import filenameToAttributes from './filenameToAttributes'
+import * as path from 'path'
 
 // read file names from loaded config.moviesLocation
 // find all filenames in mongoose where listed in read filenames
@@ -8,7 +9,7 @@ import filenameToAttributes from './filenameToAttributes'
 // load new movies to db
 
 const findNewMovies = async () => {
-  const movieNames = readdirSync(process.env.MOVIE_DIR)
+  const movieNames = await globby([path.join(process.env.MOVIE_DIR, '/**/*')])
   const storedMovies = await Movie.find({ file: { $in: movieNames } }).exec()
   const storedMovieNames = storedMovies.map(movie => movie.name)
 
@@ -23,8 +24,7 @@ const findNewMovies = async () => {
  */
 export default async () => {
   const movies = await findNewMovies()
-
-  return Promise.all(
+  return await Promise.all(
     movies.map(async (movie) => {
       const atts = filenameToAttributes(movie)
       try {
@@ -34,7 +34,7 @@ export default async () => {
           ...atts
         })
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     })
   )
