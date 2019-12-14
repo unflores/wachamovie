@@ -45,7 +45,7 @@
     "koa-send": "^5.0.0",
     "koa-static": "^5.0.0",
     "koa-stream": "^0.2.0",
-    "mongoose": "^5.4.6",
+    "mongoose": "^5.7.5",
     "webpack": "^4.29.0"
   }
 }
