@@ -27,6 +27,14 @@ const buildRoutes = (app) => {
 export function configure(app) {
   app = buildRoutes(app)
 
+  app.on('error', (error) => {
+    if (error.code === 'EPIPE' || error.code === 'ECONNRESET') {
+      ;// Gobbled, for displaying streams
+    } else {
+      console.error('App error', { error })
+    }
+  })
+
   connectDatabase()
 
   const port = process.env.PORT || '9090'

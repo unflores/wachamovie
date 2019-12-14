@@ -1,6 +1,6 @@
 require('dotenv').config()
 import logger from './src/config/logger'
-import { configure } from './src/config/webserver'
+import { configure } from './src/webserver'
 const Koa = require('koa')
 
 const app = configure(new Koa())

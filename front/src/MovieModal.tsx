@@ -4,17 +4,17 @@ import * as styles from './styles.css'
 interface Props {
   handleClose: () => void
   show: boolean
-  file: string
+  fileId: string
 }
 
-export default ({ handleClose, show, file }: Props) => {
+export default ({ handleClose, show, fileId }: Props) => {
   const display = show ? styles['display-block'] : styles['display-none']
-
+  if (!fileId) { return null }
   return (
     <div className={`${styles.modal} ${display}`}>
       <section className={styles['modal-main']}>
         <video width="320" height="240" controls={true}>
-          <source src={file} type="video/x-matroska" />
+          <source src={`/api/movie_streams/${fileId}`} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div className="row">
