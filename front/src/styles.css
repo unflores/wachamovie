@@ -30,3 +30,12 @@
 .display-none {
   display: none;
 }
+
+.video {
+  margin: -50px auto 10px;
+  display: block;
+}
+
+.spacer{
+  height: 15px;
+}

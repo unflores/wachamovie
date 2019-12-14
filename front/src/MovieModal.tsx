@@ -12,16 +12,25 @@ export default ({ handleClose, show, fileId }: Props) => {
   if (!fileId) { return null }
   return (
     <div className={`${styles.modal} ${display}`}>
-      <section className={styles['modal-main']}>
-        <video width="320" height="240" controls={true}>
-          <source src={`/api/movie_streams/${fileId}`} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <section className={`container ${styles['modal-main']}`}>
         <div className="row">
-          <div className="col-12">
+          <video
+            className={styles.video}
+            width="1024"
+            height="786"
+            controls={true}
+          >
+            <source src={`/api/movie_streams/${fileId}`} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div className="row">
+          <div className="col-11" />
+          <div className="col-1">
             <button className="btn btn-dark" onClick={handleClose}>close</button>
           </div>
         </div>
+        <div className={styles.spacer} />
       </section>
     </div >
   )
