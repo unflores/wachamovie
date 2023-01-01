@@ -46,6 +46,6 @@
     "koa-static": "^5.0.0",
     "koa-stream": "^0.2.0",
     "mongoose": "^5.4.6",
-    "webpack": "^4.29.0"
+    "webpack": "^5.75.0"
   }
 }
